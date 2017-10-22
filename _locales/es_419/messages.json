@@ -1,0 +1,26 @@
+{
+    "name": {
+        "message": "De muertos para vivos"
+    },
+    "title": {
+        "message": "De muertos para vivos"
+    },
+    "donate": {
+        "message": "Dona aquí"
+    },
+    "photo_credits": {
+        "message": "Foto por: $NAME$",
+        "placeholders": {
+            "name": {
+                "content": "$1",
+                "example": "Anónimo."
+            }
+        }
+    },
+    "quote1": {
+        "message": "Silencio por los vivos por descubrir"
+    },
+    "photo1": {
+        "message": "Ofrenda en Michoacán"
+    }
+}
