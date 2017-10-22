@@ -7,10 +7,6 @@
 
     "default_locale": "es_419",
 
-    "permissions": [
-        "activeTab",
-        "storage"
-    ],
     "chrome_url_overrides": {
         "newtab": "tabPage.html"
     }

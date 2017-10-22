@@ -3,7 +3,7 @@ const PHOTOS = [{
     src: '1.jpg',
     descriptionKey: 'photo1',
     photographer: 'Andy Warhol',
-    link: 'www.instagram.com'
+    link: 'https://www.instagram.com'
 }];
 
 class Photo {
