@@ -7,7 +7,16 @@
 
     "default_locale": "es_419",
 
+    "permissions": [
+        { "fileSystem": ["write"] }
+    ],
+
+    "background": {
+        "scripts": ["imageSync.js"],
+        "persistent": false
+    },
+
     "chrome_url_overrides": {
-        "newtab": "tabPage.html"
+        "newtab": "tab_page/index.html"
     }
 }

@@ -8,7 +8,7 @@ const PHOTOS = [{
 
 class Photo {
     constructor({ src, descriptionKey, photographer, link }) {
-        this.src = `background_images/${src}`;
+        this.src = `../background_images/${src}`;
         this.description = descriptionKey ? chrome.i18n.getMessage(descriptionKey) : '';
         this.photographer = photographer || '';
         this.link = link || '';
