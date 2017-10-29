@@ -54,10 +54,13 @@ function selectRandomArrayElement(array) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const photo = new Photo(selectRandomArrayElement(PHOTOS));
-    setBackgroundImage(photo);
-    showPhotoCredits(photo);
+    IMAGES_METAS_PROMISE.then(photos => {
+        const photo = new Photo(selectRandomArrayElement(photos));
+        setBackgroundImage(photo);
+        showPhotoCredits(photo);
+    });
 
+    const QUOTES_COUNT = 1;
     const quoteId = sampleDiscreteRange(QUOTES_COUNT) + 1;
     showQuote(quoteId);
     showDonateRequest();
