@@ -36,7 +36,7 @@ function showDonateRequest() {
 }
 
 function showPhotoCredits(photo) {
-    const creditsElement = document.getElementsByClassName('photo_credits')[0];
+    const creditsElement = document.getElementsByClassName('photo-credits')[0];
     const authorElement = creditsElement.getElementsByClassName('author')[0];
 
     creditsElement.getElementsByClassName('description')[0].innerHTML = photo.getDescription();
