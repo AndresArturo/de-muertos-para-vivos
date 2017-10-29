@@ -12,7 +12,7 @@
     ],
 
     "background": {
-        "scripts": ["preload_page/index.html"],
+        "page": "preload_page/index.html",
         "persistent": false
     },
 

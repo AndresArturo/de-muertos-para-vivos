@@ -1,5 +1,5 @@
 function getConfig() {
-    return getJsonFromFile('configs/config.json');
+    return getJsonFromFile('../configs/config.json');
 }
 
 function getRemoteImagesMeta(config) {
