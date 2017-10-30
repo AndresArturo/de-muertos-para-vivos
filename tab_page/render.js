@@ -28,11 +28,15 @@ function setBackgroundImage(photo) {
 }
 
 function showQuote(quoteId) {
-    document.getElementsByClassName('quote')[0].innerHTML = chrome.i18n.getMessage(`quote${quoteId}`);
+    document.getElementById('quote').innerHTML = chrome.i18n.getMessage(`quote${quoteId}`);
 }
 
 function showDonateRequest() {
-    document.getElementsByClassName('donate')[0].innerHTML = chrome.i18n.getMessage('donate');
+    document.getElementById('donate').innerHTML = chrome.i18n.getMessage('donate');
+}
+
+function setDonateLink(link) {
+    document.getElementById('donate').setAttribute('href', link);
 }
 
 function showPhotoCredits(photo) {
@@ -59,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setBackgroundImage(photo);
         showPhotoCredits(photo);
     });
+
+    getDonateLinks().then(links => setDonateLink(selectRandomArrayElement(links)));
 
     const QUOTES_COUNT = 1;
     const quoteId = sampleDiscreteRange(QUOTES_COUNT) + 1;
