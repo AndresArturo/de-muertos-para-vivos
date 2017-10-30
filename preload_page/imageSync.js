@@ -1,5 +1,5 @@
 function getConfig() {
-    return getJsonFromFile('configs/config.json');
+    return getJsonFromFile('../configs/config.json');
 }
 
 function getRemoteImagesMeta(config) {
@@ -11,9 +11,9 @@ function preloadImages(images) {
 }
 
 function saveImagesMeta(key, images) {
-    chrome.storage.local.set({
-        key: images
-    });
+    let obj = {};
+    obj[key] = images;
+    chrome.storage.local.set(obj);
 }
 
 // Preloads images and saves their meta info
@@ -22,10 +22,14 @@ function fetchRemoteImages(images) {
     preloadImages(images);
 }
 
+function loadRemoteImages() {
+    getConfig()
+        .then(getRemoteImagesMeta)
+        .then(fetchRemoteImages);
+}
+
 if (chrome.runtime && chrome.runtime.onStartup) {
-    chrome.runtime.onStartup.addListener(() => {
-        getConfig()
-            .then(getRemoteImagesMeta)
-            .then(fetchRemoteImages);
-    });
+    chrome.runtime.onStartup.addListener(loadRemoteImages);
+} else {
+    loadRemoteImages();
 }

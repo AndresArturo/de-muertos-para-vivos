@@ -1,5 +1,5 @@
 {
-    "name": {
+    "extension_name": {
         "message": "De muertos para vivos"
     },
     "title": {
@@ -19,8 +19,5 @@
     },
     "quote1": {
         "message": "Silencio por los vivos por descubrir"
-    },
-    "photo1": {
-        "message": "Ofrenda en Michoacán"
     }
 }
