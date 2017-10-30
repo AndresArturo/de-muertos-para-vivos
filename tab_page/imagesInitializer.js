@@ -17,11 +17,12 @@ function getImagesMetaFromConfig() {
 
 function getDefaultImagesMeta() {
     return [{
-            description: "default image",
-            author: "anonymous",
-            url: "no url",
-            provider: "local",
-            provider_url: "local"
+        description: 'default image',
+        src: 'default.jpg',
+        author: 'anonymous',
+        credits_url: '',
+        provider: 'local',
+        provider_url: ''
     }];
 }
 

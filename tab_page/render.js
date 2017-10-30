@@ -1,9 +1,9 @@
 class Photo {
-    constructor({ src, descriptionKey, photographer, link }) {
-        this.src = `../images/${src}`;
-        this.description = descriptionKey ? chrome.i18n.getMessage(descriptionKey) : '';
-        this.photographer = photographer || '';
-        this.link = link || '';
+    constructor({ url, src, description, author, credits_url }) {
+        this.src = url || `../images/${src}`;
+        this.description = description || '';
+        this.author = author || '';
+        this.link = credits_url || '';
     }
 
     getSource() {
@@ -14,8 +14,8 @@ class Photo {
         return this.description;
     }
 
-    getPhotographer() {
-        return this.photographer;
+    getAuthorName() {
+        return this.author;
     }
 
     getLink() {
@@ -40,7 +40,7 @@ function showPhotoCredits(photo) {
     const authorElement = creditsElement.getElementsByClassName('author')[0];
 
     creditsElement.getElementsByClassName('description')[0].innerHTML = photo.getDescription();
-    authorElement.innerHTML = chrome.i18n.getMessage('photo_credits', photo.getPhotographer());
+    authorElement.innerHTML = chrome.i18n.getMessage('photo_credits', photo.getAuthorName());
     authorElement.setAttribute('href', photo.getLink());
 }
 
