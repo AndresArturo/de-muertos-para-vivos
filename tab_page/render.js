@@ -27,8 +27,8 @@ function setBackgroundImage(photo) {
     document.body.style.backgroundImage = `url(${photo.getSource()})`;
 }
 
-function showQuote(quoteId) {
-    document.getElementById('quote').innerHTML = chrome.i18n.getMessage(`quote${quoteId}`);
+function showQuote(quote) {
+    document.getElementById('quote').innerHTML = `${quote}`;
 }
 
 function showDonateRequest() {
@@ -40,20 +40,14 @@ function setDonateLink(link) {
 }
 
 function showPhotoCredits(photo) {
-    const creditsElement = document.getElementsByClassName('photo-credits')[0];
-    const authorElement = creditsElement.getElementsByClassName('author')[0];
+    const authorElement = document.getElementsByClassName('author')[0];
 
-    creditsElement.getElementsByClassName('description')[0].innerHTML = photo.getDescription();
     authorElement.innerHTML = chrome.i18n.getMessage('photo_credits', photo.getAuthorName());
     authorElement.setAttribute('href', photo.getLink());
 }
 
-function sampleDiscreteRange(zeroOriginRange) {
-    return Math.floor(Math.random() * zeroOriginRange);
-}
-
 function selectRandomArrayElement(array) {
-    const index = sampleDiscreteRange(array.length);
+    const index = Math.floor(Math.random() * array.length);
     return array[index];
 }
 
@@ -61,13 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     IMAGES_METAS_PROMISE.then(photos => {
         const photo = new Photo(selectRandomArrayElement(photos));
         setBackgroundImage(photo);
+        showQuote(photo.getDescription());
         showPhotoCredits(photo);
     });
 
     getDonateLinks().then(links => setDonateLink(selectRandomArrayElement(links)));
-
-    const QUOTES_COUNT = 1;
-    const quoteId = sampleDiscreteRange(QUOTES_COUNT) + 1;
-    showQuote(quoteId);
     showDonateRequest();
 });
