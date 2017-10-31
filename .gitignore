@@ -1,4 +1,5 @@
 images/*
 configs/*
 fonts/*
+_locales/**/*
 .DS_Store
