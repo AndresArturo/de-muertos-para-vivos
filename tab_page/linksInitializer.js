@@ -4,7 +4,7 @@ function getDonateLinksFromConfig() {
 }
 
 function getDefaultDonateLinks() {
-    return ['https://donate.omaze.com/mexico'];
+    return [];
 }
 
 function getDonateLinks() {
