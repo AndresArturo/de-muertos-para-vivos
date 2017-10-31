@@ -28,11 +28,11 @@ function setBackgroundImage(photo) {
 }
 
 function showQuote(quote) {
-    document.getElementById('quote').innerHTML = `${quote}`;
+    document.getElementById('quote').innerText = `${quote}`;
 }
 
 function showDonateRequest() {
-    document.getElementById('donate').innerHTML = chrome.i18n.getMessage('donate');
+    document.getElementById('donate').innerText = chrome.i18n.getMessage('donate');
 }
 
 function setDonateLink(link) {
@@ -42,8 +42,28 @@ function setDonateLink(link) {
 function showPhotoCredits(photo) {
     const authorElement = document.getElementsByClassName('author')[0];
 
-    authorElement.innerHTML = chrome.i18n.getMessage('photo_credits', photo.getAuthorName());
+    authorElement.innerText = chrome.i18n.getMessage('photo_credits', photo.getAuthorName());
     authorElement.setAttribute('href', photo.getLink());
+}
+
+function showLeftFooter() {
+    const leftFooter = document.getElementsByClassName('left-footer')[0];
+    const leftFooterAnchor = leftFooter.getElementsByTagName('A')[0];
+    leftFooterAnchor.innerText = chrome.i18n.getMessage('left_footer_text');
+    leftFooterAnchor.setAttribute('href', chrome.i18n.getMessage('left_footer_link'));
+}
+
+function showCentralFooter() {
+    const centralFooter = document.getElementsByClassName('central-footer')[0];
+    const centralFooterAnchor = centralFooter.getElementsByTagName('A')[0];
+    centralFooterAnchor.innerText = chrome.i18n.getMessage('title');
+}
+
+function showRightFooter() {
+    const rightFooter = document.getElementsByClassName('right-footer')[0];
+    const rightFooterAnchor = rightFooter.getElementsByTagName('A')[0];
+    rightFooterAnchor.innerText = chrome.i18n.getMessage('right_footer_text');
+    rightFooterAnchor.setAttribute('href', chrome.i18n.getMessage('right_footer_link'));
 }
 
 function selectRandomArrayElement(array) {
@@ -60,5 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     getDonateLinks().then(links => setDonateLink(selectRandomArrayElement(links)));
+    
     showDonateRequest();
+    showLeftFooter();
+    showCentralFooter();
+    showRightFooter();
 });
