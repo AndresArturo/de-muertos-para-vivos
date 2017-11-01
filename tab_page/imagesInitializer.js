@@ -17,11 +17,11 @@ function getImagesMetaFromConfig() {
 
 function getDefaultImagesMeta() {
     return [{
-        description: 'default image',
+        description: chrome.i18n.getMessage('title') || '',
         src: 'default.jpg',
         author: 'anonymous',
         credits_url: '',
-        provider: 'local',
+        provider: '',
         provider_url: ''
     }];
 }

@@ -1,9 +1,19 @@
 class Photo {
-    constructor({ url, src, description, author, credits_url }) {
+    constructor({ 
+        url,
+        src,
+        description,
+        author,
+        credits_url,
+        provider,
+        provider_url
+    }) {
         this.src = url || `../images/${src}`;
         this.description = description || '';
         this.author = author || '';
         this.link = credits_url || '';
+        this.providerName = provider;
+        this.providerLink = provider_url;
     }
 
     getSource() {
@@ -20,6 +30,14 @@ class Photo {
 
     getLink() {
         return this.link;
+    }
+
+    getProviderName() {
+        return this.providerName;
+    }
+
+    getProviderLink() {
+        return this.providerLink;
     }
 }
 
@@ -41,9 +59,15 @@ function setDonateLink(link) {
 
 function showPhotoCredits(photo) {
     const authorElement = document.getElementsByClassName('author')[0];
+    const providerElement = document.getElementsByClassName('provider')[0];
 
-    authorElement.innerText = chrome.i18n.getMessage('photo_credits', photo.getAuthorName());
+    authorElement.innerText = chrome.i18n.getMessage('photo_credits_author', photo.getAuthorName());
     authorElement.setAttribute('href', photo.getLink());
+
+    if (photo.getProviderName()) {
+        providerElement.innerText = chrome.i18n.getMessage('photo_credits_provider', photo.getProviderName());
+        providerElement.setAttribute('href', photo.getProviderLink());
+    }
 }
 
 function showLeftFooter() {
