@@ -2,10 +2,10 @@
     "manifest_version": 2,
 
     "name": "__MSG_extension_name__",
-    "description": "This extension displays a personalized background for new tabs in memory of the victims of the earthquakes of 2017 in Mexico.",
+    "description": "__MSG_extension_description__",
     "version": "1.0",
 
-    "default_locale": "es_419",
+    "default_locale": "en",
 
     "permissions": [
         "storage"
