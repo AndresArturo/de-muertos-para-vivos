@@ -10,15 +10,9 @@ function preloadImages(images) {
     images.forEach(img => new Image().src = img.url);
 }
 
-function saveImagesMeta(key, images) {
-    let obj = {};
-    obj[key] = images;
-    chrome.storage.local.set(obj);
-}
-
 // Preloads images and saves their meta info
 function fetchRemoteImages(images) {
-    saveImagesMeta('remote_imgs', images);
+    saveArrayInStorage(IMG_STORAGE_KEY, images);
     preloadImages(images);
 }
 

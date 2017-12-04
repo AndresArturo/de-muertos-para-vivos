@@ -1,15 +1,3 @@
-function getImagesMetaFromStorage(key) {
-    return new Promise(resolve => {
-        chrome.storage.local.get(key, items => {
-            if (chrome.runtime.lastError || items[key] === undefined) {
-                resolve([]);
-            } else {
-                resolve(items[key]);
-            }
-        });
-    });
-}
-
 function getImagesMetaFromConfig() {
     return getJsonFromFile('../configs/localImagesMeta.json')
         .catch(() => []);
@@ -28,7 +16,7 @@ function getDefaultImagesMeta() {
 
 function getImagesMetas() {
     const imgsMetaPromises = [
-        getImagesMetaFromStorage('remote_imgs'),
+        loadArrayFromStorage(IMG_STORAGE_KEY),
         getImagesMetaFromConfig()
     ];
 
@@ -42,5 +30,35 @@ function getImagesMetas() {
         });
 }
 
-// Start fetching images metas ASAP
-const IMAGES_METAS_PROMISE = getImagesMetas();
+function selectRandomArrayElement(array) {
+    const index = Math.floor(Math.random() * array.length);
+    return array[index];
+}
+
+function getRandomImageMetaSelector() {
+    const metasPromise = getImagesMetas();
+    return () => metasPromise.then(selectRandomArrayElement);
+}
+
+function fetchImgToDisplay(getAlternativeImage) {
+    return loadArrayFromStorage(IMG_TO_DISPLAY_KEY)
+        .then(imgArray => imgArray.length > 0 
+            ? imgArray[0] 
+            : getAlternativeImage()
+        );
+}
+
+const getRandomImageMeta = getRandomImageMetaSelector();
+
+// Load meta of image to display ASAP
+const IMAGE_META_PROMISE = fetchImgToDisplay(getRandomImageMeta);
+
+// Set and pre-fetch next image to display 
+IMAGE_META_PROMISE.then(() => {
+    getRandomImageMeta()
+    .then(img => {
+        new Image().src = img.url;
+        saveArrayInStorage(IMG_TO_DISPLAY_KEY, img);
+    });
+});
+

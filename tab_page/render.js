@@ -90,14 +90,9 @@ function showRightFooter() {
     rightFooterAnchor.setAttribute('href', chrome.i18n.getMessage('right_footer_link'));
 }
 
-function selectRandomArrayElement(array) {
-    const index = Math.floor(Math.random() * array.length);
-    return array[index];
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    IMAGES_METAS_PROMISE.then(photos => {
-        const photo = new Photo(selectRandomArrayElement(photos));
+    IMAGE_META_PROMISE.then(img => {
+        const photo = new Photo(img);
         setBackgroundImage(photo);
         showQuote(photo.getDescription());
         showPhotoCredits(photo);
